@@ -9,7 +9,6 @@ const tailwindBaseConfig = {
 async function generateCSS(tailwindConfig) {
   try {
     const tailwindDirectives = `
-      @import "tailwindcss" source(none);
       @tailwind components;
       @tailwind utilities;
     `;
