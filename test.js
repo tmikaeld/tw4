@@ -2,7 +2,7 @@ import postcss from "npm:postcss";
 import tailwindcss from "npm:@tailwindcss/postcss@next";
 
 const tailwindBaseConfig = {
-  content: [{ raw: '<div class="text-red-500"></div>', extension: "html" }],
+  content: [{ raw: '<div class="text-red-500 p-4"></div>', extension: "html" }],
   corePlugins: { preflight: false },
 };
 
