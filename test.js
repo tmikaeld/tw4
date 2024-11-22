@@ -28,4 +28,4 @@ async function generateCSS(tailwindConfig) {
 // Run the test
 console.log('Starting CSS generation...');
 const css = await generateCSS(tailwindBaseConfig);
-console.log('\nFinal CSS:', Math.round(css.length/1000)+' KB');
+console.log('\nFinal CSS:', css);
