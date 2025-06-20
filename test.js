@@ -29,3 +29,4 @@ async function generateCSS(tailwindConfig) {
 console.log('Starting CSS generation...');
 const css = await generateCSS(tailwindBaseConfig);
 console.log('\nFinal CSS:', css);
+
