@@ -1,22 +1,32 @@
 import postcss from "npm:postcss";
-import tailwindcss from "npm:@tailwindcss/postcss";
 
+// Your Tailwind config remains the same
 const tailwindBaseConfig = {
   content: [{ raw: '<div class="text-red-500 p-4"></div>', extension: "html" }],
   corePlugins: { preflight: false },
 };
 
-async function generateCSS(tailwindConfig) {
+async function generateCSS(config) {
   try {
-    // In v4, you use @import "tailwindcss"; instead of the old directives
-    const tailwindDirectives = '@import "tailwindcss";';
+    // The input CSS is now just the import
+    const cssInput = '@import "tailwindcss";';
+    
+    console.log('Starting CSS generation...');
+    console.log('Config:', JSON.stringify(config, null, 2));
+    console.log('CSS Input:', cssInput);
 
-    console.log('Config:', JSON.stringify(tailwindConfig, null, 2));
-    console.log('CSS Input:', tailwindDirectives);
+    // PostCSS will automatically load postcss.config.mjs
+    // We pass the tailwind config to the context
+    const result = await postcss().process(cssInput, {
+      from: undefined,
+      // Pass config to the tailwindcss plugin via postcss-load-config context
+      config: {
+        plugins: {
+          "@tailwindcss/postcss": config,
+        }
+      }
+    });
 
-    // The config object is passed to the plugin
-    const result = await postcss([tailwindcss(tailwindConfig)])
-      .process(tailwindDirectives, { from: undefined });
     return result.css;
   } catch (error) {
     console.error("Error generating CSS:", error);
@@ -25,6 +35,5 @@ async function generateCSS(tailwindConfig) {
 }
 
 // Run the test
-console.log('Starting CSS generation...');
 const css = await generateCSS(tailwindBaseConfig);
 console.log('\nFinal CSS:', css);
