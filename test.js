@@ -1,5 +1,5 @@
-import postcss from "npm:postcss";
-import tailwindcss from "npm:@tailwindcss/postcss@next";
+// import postcss from "npm:postcss";
+import tailwindcss from "npm:@tailwindcss/postcss";
 
 const tailwindBaseConfig = {
   content: [{ raw: '<div class="text-red-500 p-4"></div>', extension: "html" }],
