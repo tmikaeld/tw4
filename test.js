@@ -1,4 +1,4 @@
-// import postcss from "npm:postcss";
+import postcss from "npm:postcss";
 import tailwindcss from "npm:@tailwindcss/postcss";
 
 const tailwindBaseConfig = {
