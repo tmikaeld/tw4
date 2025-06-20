@@ -8,14 +8,13 @@ const tailwindBaseConfig = {
 
 async function generateCSS(tailwindConfig) {
   try {
-    const tailwindDirectives = `
-      @tailwind components;
-      @tailwind utilities;
-    `;
-    
-    console.log('Config:', JSON.stringify(tailwindConfig, null, 2));
-    console.log('Directives:', tailwindDirectives);
+    // In v4, you use @import "tailwindcss"; instead of the old directives
+    const tailwindDirectives = '@import "tailwindcss";';
 
+    console.log('Config:', JSON.stringify(tailwindConfig, null, 2));
+    console.log('CSS Input:', tailwindDirectives);
+
+    // The config object is passed to the plugin
     const result = await postcss([tailwindcss(tailwindConfig)])
       .process(tailwindDirectives, { from: undefined });
     return result.css;
@@ -29,4 +28,3 @@ async function generateCSS(tailwindConfig) {
 console.log('Starting CSS generation...');
 const css = await generateCSS(tailwindBaseConfig);
 console.log('\nFinal CSS:', css);
-
